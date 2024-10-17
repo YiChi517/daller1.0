@@ -34,17 +34,17 @@ class LevelFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_level, container, false)
     }
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        // 點擊按鈕返回到 CurrentFragment
-//        val button = view.findViewById<Button>(R.id.back)
-//        button.setOnClickListener {
-//            // 確保 activity 是 MenuActivity
-//            val activity = activity as? MenuActivity
-//            activity?.replaceFragment(HomeFragment()) // 返回 HomeFragment
-//        }
-//    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // 點擊按鈕返回到 CurrentFragment
+        val button = view.findViewById<Button>(R.id.back)
+        button.setOnClickListener {
+            // 確保 activity 是 MenuActivity
+            val activity = activity as? MenuActivity
+            activity?.replaceFragment(HomeFragment()) // 返回 HomeFragment
+        }
+    }
 //    override fun onDestroyView() {
 //        super.onDestroyView()
 //
