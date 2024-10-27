@@ -6,22 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.fragment.app.FragmentTransaction
 import com.example.dalleralpha1_0_0.MenuActivity
 import com.example.dalleralpha1_0_0.R
-import com.example.dalleralpha1_0_0.practice.PracticeFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,14 +27,16 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //第一關
         val button1 = view.findViewById<Button>(R.id.level1)
         button1.setOnClickListener {
             val menuActivity = activity as? MenuActivity
             menuActivity?.hideBottomNavigation()
             //替換成第一關的頁面
-            menuActivity?.replaceFragment(LevelFragment())
+            menuActivity?.replaceFragment(StartFragment())
         }
     }
+
 }
 
 

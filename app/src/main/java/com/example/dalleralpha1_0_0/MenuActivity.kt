@@ -5,9 +5,6 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentController
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
 import com.example.dalleralpha1_0_0.home.HomeFragment
 import com.example.dalleralpha1_0_0.person.PersonFragment
 import com.example.dalleralpha1_0_0.practice.PracticeFragment
@@ -19,11 +16,10 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-//        // 設置初始的 Fragment
-//        val manager = supportFragmentManager
-//        val transaction = manager.beginTransaction()
-//        transaction.replace(R.id.fragmentContainerHome, HomeFragment()).commit()
-        replaceFragment(HomeFragment())
+        // 設置初始的 Fragment
+        val manager = supportFragmentManager
+        val transaction = manager.beginTransaction()
+        transaction.replace(R.id.fragmentContainerHome, HomeFragment()).commit()
 
         val nav=findViewById<BottomNavigationView>(R.id.navigation)
         nav.setOnNavigationItemSelectedListener(listener)
@@ -59,13 +55,15 @@ class MenuActivity : AppCompatActivity() {
         return true
         }
     }
-    // 定義一個方法用來替換 Fragment
+
+    //定義一個方法用來替換 Fragment
     fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainerHome, fragment) // 替換 Fragment
             .addToBackStack(null) // 添加到回退堆疊，允許返回上一個 Fragment
             .commit()
     }
+
     // 顯示 BottomNavigationView
     fun showBottomNavigation() {
         findViewById<BottomNavigationView>(R.id.navigation).visibility = View.VISIBLE
