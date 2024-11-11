@@ -13,7 +13,9 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.dalleralpha1_0_0.api.Api
 import com.example.dalleralpha1_0_0.api.LoginRequest
 import com.example.dalleralpha1_0_0.api.LoginResponse
+import com.example.dalleralpha1_0_0.api.QuestionsResponse
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {

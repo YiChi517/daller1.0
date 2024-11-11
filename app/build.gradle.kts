@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     ("kotlin-android")
     ("kotlin-android-extensions")
+    ("kotlin-parcelize")
+    id("kotlin-parcelize")
 }
 
 android {
