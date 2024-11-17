@@ -36,30 +36,37 @@ class HomeFragment : Fragment() {
         //第一關
         val button1 = view.findViewById<Button>(R.id.level1)
         button1.setOnClickListener {
-            fetchLevelInformation()
+            fetchLevelInformation("level.1")
         }
+        //第二關
+        val button2 = view.findViewById<Button>(R.id.level2)
+        button2.setOnClickListener {
+            fetchLevelInformation("level.2")
+        }
+        //以此類推
     }
 
-    private fun fetchLevelInformation() {
-        Api.levelInformationService.getInformation().enqueue(object : Callback<List<Information>> {
-            override fun onResponse(call: Call<List<Information>>, response: Response<List<Information>>) {
+    private fun fetchLevelInformation(levelId: String) {
+        Api.levelInformationService.getInformation(levelId).enqueue(object : Callback<Information> {
+            override fun onResponse(call: Call<Information>, response: Response<Information>) {
                 if (response.isSuccessful) {
                     val information = response.body()  // 獲取返回的關卡資訊
                     // 將問題列表封裝到 Bundle 中，key是"information"
                     if (information != null) {
                         val bundle = Bundle().apply {
-                            putParcelableArrayList("information", ArrayList(information))
+                            putParcelable("information", information)
+                            putString("levelId", levelId) // 傳遞 levelId
                         }
                         // 導航到 StartFragment 並傳遞數據
                         val startFragment = StartFragment().apply {
                             arguments = bundle
                         }
-                        //替換成第一關的關卡開始頁面
+                        //替換成關卡資訊的頁面
                         val menuActivity = activity as? MenuActivity
                         menuActivity?.hideBottomNavigation()
                         menuActivity?.replaceFragment(startFragment)
 
-                        Log.d("fetchLevelInformation", "成功獲取關卡資訊: ${information.size}")
+                        Log.d("fetchLevelInformation", "成功獲取關卡資訊: {$information}")
                     } else {
                         // 如果 questions 為 null，顯示錯誤訊息
                         Log.e("API Error", "No questions found in response")
@@ -71,8 +78,7 @@ class HomeFragment : Fragment() {
                     Log.e("fetchLevelInformation", "Error code: $errorCode, Error body: $errorBody")
                 }
             }
-
-            override fun onFailure(call: Call<List<Information>>, t: Throwable) {
+            override fun onFailure(call: Call<Information>, t: Throwable) {
                 // 處理請求錯誤
                 Log.e("fetchLevelInformation", "請求失敗: $t")
             }

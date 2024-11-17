@@ -13,6 +13,9 @@ import com.example.dalleralpha1_0_0.MenuActivity
 import com.example.dalleralpha1_0_0.R
 
 class BadFragment : DialogFragment() {
+
+    var onNextClicked: (() -> Unit)? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -22,7 +25,14 @@ class BadFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_bad, container, false)
+        val view = inflater.inflate(R.layout.fragment_bad, container, false)
+
+        view.findViewById<Button>(R.id.next).setOnClickListener {
+            onNextClicked?.invoke()
+            dismiss()
+        }
+
+        return view
     }
 
     override fun onStart() {
@@ -34,21 +44,11 @@ class BadFragment : DialogFragment() {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        //點繼續按紐，跳到結算頁
-        val next = view.findViewById<Button>(R.id.next)
-        next.setOnClickListener {
-            val menuActivity = activity as? MenuActivity
-            menuActivity?.replaceFragment(HomeFragment())
-            menuActivity?.showBottomNavigation()
-        }
-    }
-
     companion object {
-        fun newInstance(): BadFragment {
-            return BadFragment()
+        fun newInstance(onNextClicked: () -> Unit): BadFragment {
+            val fragment = BadFragment()
+            fragment.onNextClicked = onNextClicked
+            return fragment
         }
     }
 }

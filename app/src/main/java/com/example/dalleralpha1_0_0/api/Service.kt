@@ -32,8 +32,8 @@ interface LevelService {
 interface LevelInformationService {
     // 獲取關卡資訊
     @Headers("Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpdHRsZWRhQGdtYWlsLmNvbSIsInN1YiI6IkRvbGxhckF1dGhlbnRpY2F0aW9uIiwiaXNzIjoiZG9sbGFyIFNlcnZlciJ9.E6-zdWk67cR7zd06htj-SaEGQsIprVXH3H4Pm9No6edMlKi2JPhgJxP1TYUDOC3PYsjqPxcPv2eEMW947aNjhA", "Content-Type: application/json")
-    @GET("games/levels")
-    fun getInformation(): Call<List<Information>>
+    @GET("games/levels/{levelId}")
+    fun getInformation(@Path("levelId") levelId: String): Call<Information>
 }
 
 object Api {

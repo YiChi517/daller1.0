@@ -14,6 +14,8 @@ import com.example.dalleralpha1_0_0.R
 
 class GoodFragment : DialogFragment() {
 
+    var onNextClicked: (() -> Unit)? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -23,7 +25,13 @@ class GoodFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_good, container, false)
+        val view = inflater.inflate(R.layout.fragment_good, container, false)
+
+        view.findViewById<Button>(R.id.next).setOnClickListener {
+            onNextClicked?.invoke()
+            dismiss()
+        }
+        return view
     }
 
     override fun onStart() {
@@ -35,21 +43,11 @@ class GoodFragment : DialogFragment() {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        //點繼續按紐，跳到第二題
-        val next = view.findViewById<Button>(R.id.next)
-        next.setOnClickListener {
-            val menuActivity = activity as? MenuActivity
-            menuActivity?.hideBottomNavigation()
-            menuActivity?.replaceFragment(LevelFragment())
-        }
-    }
-
     companion object {
-        fun newInstance(): GoodFragment {
-            return GoodFragment()
+        fun newInstance(onNextClicked: () -> Unit): GoodFragment {
+            val fragment = GoodFragment()
+            fragment.onNextClicked = onNextClicked
+            return fragment
         }
     }
 }

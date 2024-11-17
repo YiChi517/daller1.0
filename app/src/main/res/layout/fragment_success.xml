@@ -92,7 +92,7 @@
         android:text="獲取獎勵"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="40dp"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="40dp"
         app:layout_constraintEnd_toEndOf="parent"

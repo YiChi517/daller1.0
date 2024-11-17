@@ -21,11 +21,14 @@ import retrofit2.Response
 
 class StartFragment : Fragment() {
 
-    private var information: ArrayList<Information>? = null
+    private var information: Information? = null
+    private var levelId: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        information = arguments?.getParcelableArrayList("information")
+        information = arguments?.getParcelable("information")
+        levelId = arguments?.getString("levelId")
     }
 
     override fun onCreateView(
@@ -40,18 +43,17 @@ class StartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //帶入關卡資訊到layout
-        information?.let { informationList -> //positionp[0]是第一關的資訊
-            view.findViewById<TextView>(R.id.center).text = informationList[0].levelNumber.toString()
-            view.findViewById<TextView>(R.id.content).text = informationList[0].gameTitle
-            view.findViewById<TextView>(R.id.description).text = informationList[0].description
-            view.findViewById<TextView>(R.id.star_contnet).text = informationList[0].difficulty
-            view.findViewById<TextView>(R.id.award_contnet).text = informationList[0].reward.toString()
-
+        information?.let { info ->
+            view.findViewById<TextView>(R.id.center).text = info.levelNumber.toString()
+            view.findViewById<TextView>(R.id.content).text = info.gameTitle
+            view.findViewById<TextView>(R.id.description).text = info.description
+            view.findViewById<TextView>(R.id.star_contnet).text = info.difficulty
+            view.findViewById<TextView>(R.id.award_contnet).text = info.reward.toString()
         }
         //取得第一關level.1的題目
         val start = view.findViewById<Button>(R.id.start)
         start.setOnClickListener {
-            fetchQuestions("level.1")
+            fetchQuestions(levelId!!)
         }
     }
 
@@ -74,7 +76,7 @@ class StartFragment : Fragment() {
                             }
                             val menuActivity = activity as? MenuActivity
                             menuActivity?.hideBottomNavigation()
-                            //替換成第一關的頁面
+                            //替換成關卡的頁面
                             menuActivity?.replaceFragment(levelFragment)
                             Log.d("API Success", "Received ${questions.size} questions")
                         } else {

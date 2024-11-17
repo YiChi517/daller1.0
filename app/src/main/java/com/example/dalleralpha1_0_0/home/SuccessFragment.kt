@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import com.example.dalleralpha1_0_0.MenuActivity
 import com.example.dalleralpha1_0_0.R
 
-class SuccessFragment : Fragment() {
+class SuccessFragment(val rightAnswer:Int) : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +29,8 @@ class SuccessFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        view.findViewById<TextView>(R.id.center).text = rightAnswer.toString()
 
         // 點擊獲取獎勵返回到HomeFragment，ToolBar的鑽石會增加(這個還沒寫)
         val back = view.findViewById<Button>(R.id.back)
