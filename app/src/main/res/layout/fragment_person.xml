@@ -1,14 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".person.PersonFragment">
+    android:orientation="vertical"
+    android:background="#333333"
+    android:padding="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- 頂部按鈕區域 -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ek4bp6y xul" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="8dp">
 
-</FrameLayout>
+        <Button
+            android:id="@+id/ticket_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
+            android:text="證券"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/fire_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="26"
+            android:textSize="18sp"
+            android:textColor="#FFA500" />
+
+        <TextView
+            android:id="@+id/diamond_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="365"
+            android:textSize="18sp"
+            android:textColor="#00BFFF" />
+
+        <ImageView
+            android:id="@+id/crown_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/crown_icon" />
+    </LinearLayout>
+
+    <!-- 使用者資訊區域 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="16dp">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/profile_placeholder"
+            android:scaleType="centerCrop"
+            android:background="@drawable/profile_circle_background" />
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="許舒甯"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/profile_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@sherrythemom"
+            android:textSize="16sp"
+            android:textColor="#00BFFF" />
+
+        <TextView
+            android:id="@+id/join_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="1993/10/03加入"
+            android:textSize="14sp"
+            android:textColor="#CCCCCC" />
+    </LinearLayout>
+
+    <!-- 捐款資訊區域 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/donation_background"
+        android:layout_marginTop="16dp"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/total_donation_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已經累積捐出："
+            android:textSize="18sp"
+            android:textColor="#FFC107"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/total_donation_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="13.03元"
+            android:textSize="36sp"
+            android:textColor="#FFC107"
+            android:layout_marginTop="8dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/related_donation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="關聯累積：10.03元"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/self_donation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自行捐贈：3元"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="4dp" />
+    </LinearLayout>
+
+    <!-- 好友推薦區域 -->
+    <TextView
+        android:id="@+id/friend_recommendation_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="好友推薦："
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/friend_placeholder" />
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/friend_placeholder" />
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/friend_placeholder" />
+        </LinearLayout>
+    </HorizontalScrollView>
+</LinearLayout>
